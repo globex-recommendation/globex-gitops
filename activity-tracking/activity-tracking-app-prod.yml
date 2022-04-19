@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: activity-tracking-prod
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: globex-prod
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: 'activity-tracking'
+    repoURL: {{git_repository_url}}
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-prod.yaml
+  project: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+  
