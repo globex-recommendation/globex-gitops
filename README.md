@@ -1,0 +1,1 @@
+### Gitops repo for Globex retail application
